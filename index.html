@@ -2,61 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Library</title>
+  <title>The Library of Nihan & Fimu</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
-    h1 { color: darkblue; }
-    input { padding: 8px; width: 300px; margin-bottom: 20px; }
+    h1 { text-align: center; }
+    input { margin-bottom: 20px; width: 100%; padding: 10px; }
     table { width: 100%; border-collapse: collapse; }
     th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    th { background-color: #f2f2f2; }
+    th { background-color: #f4f4f4; }
   </style>
 </head>
 <body>
-<h1>📚 The Library of Nihan & Fimu</h1>
-  <input type="text" id="searchBar" placeholder="Search book by name...">
-<table id="bookTable">
-  <thead>
-    <tr>
-      <th>Serial</th>
-      <th>Book Name</th>
-      <th>Author</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Books will be loaded here -->
-  </tbody>
-</table>
+  <h1>📚 The Library of Nihan & Fimu</h1>
 
-<script>
-  // Load books from books.json
-  fetch('books.json')
-    .then(response => response.json())
-    .then(data => {
-      let tbody = document.querySelector("#bookTable tbody");
-      data.forEach(book => {
-        let row = `<tr>
-          <td>${book.serial}</td>
-          <td>${book.title}</td>
-          <td>${book.author}</td>
-        </tr>`;
-        tbody.innerHTML += row;
+  <input type="text" id="searchInput" placeholder="Search by book or author..." onkeyup="searchBook()">
+
+  <table id="bookTable">
+    <thead>
+      <tr>
+        <th>Serial</th>
+        <th>Book Name</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Books will be loaded here -->
+    </tbody>
+  </table>
+
+  <script>
+    // Load books from books.json
+    fetch('books.json')
+      .then(response => response.json())
+      .then(data => {
+        let tbody = document.querySelector("#bookTable tbody");
+        data.forEach(book => {
+          let row = `<tr>
+            <td>${book.serial}</td>
+            <td>${book.title}</td>
+            <td>${book.author}</td>
+          </tr>`;
+          tbody.innerHTML += row;
+        });
       });
-    });
 
-  // Search by book name OR author
-  function searchBook() {
-    let input = document.getElementById("searchInput").value.toLowerCase();
-    let rows = document.querySelectorAll("#bookTable tbody tr");
-    rows.forEach(row => {
-      let title = row.cells[1].textContent.toLowerCase();
-      let author = row.cells[2].textContent.toLowerCase();
-      row.style.display = (title.includes(input) || author.includes(input)) ? "" : "none";
-    });
-  }
-</script>
-
-  
-    
+    // Search by book name OR author
+    function searchBook() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let rows = document.querySelectorAll("#bookTable tbody tr");
+      rows.forEach(row => {
+        let title = row.cells[1].textContent.toLowerCase();
+        let author = row.cells[2].textContent.toLowerCase();
+        row.style.display = (title.includes(input) || author.includes(input)) ? "" : "none";
+      });
+    }
+  </script>
 </body>
 </html>
