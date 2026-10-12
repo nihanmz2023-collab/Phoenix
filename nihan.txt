@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Library</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: darkblue; }
+    input { padding: 8px; width: 300px; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+<h1>📚 The Library of Nihan & Fimu</h1>
+  <input type="text" id="searchBar" placeholder="Search book by name...">
+
+  <table id="bookTable">
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr><td>আরণ্যক</td><td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td></tr>
+    <tr><td>আদর্শ হিন্দু হোটেল</td><td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td></tr>
+    <tr><td>ইছামতী</td><td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td></tr>
+    <tr><td>পথের পাঁচালী</td><td>বিভূতিভূষণ বন্দ্যোপাধ্যায়</td></tr>
+  </tbody>
+ </table>
+  <script>
+    const searchBar = document.getElementById('searchBar');
+    searchBar.addEventListener('keyup', function() {
+      const filter = searchBar.value.toLowerCase();
+      const rows = document.querySelectorAll('#bookTable tbody tr');
+      rows.forEach(row => {
+        const bookName = row.cells[0].textContent.toLowerCase();
+        row.style.display = bookName.includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
