@@ -1,12 +1,21 @@
 [
-  { "title": "Dracula", "author": "Bram Stoker" },
-  { "title": "Harry Potter and the Chamber of Secrets", "author": "J.K. Rowling" },
-  { "title": "Gitanjali", "author": "Rabindranath Tagore" },
-  { "title": "The Lord of the Rings", "author": "J.R.R. Tolkien" },
-
-  { "title": "নেমেসিস", "author": "মোহাম্মদ নাজিম উদ্দিন" },
-  { "title": "কন্ট্রাক্ট", "author": "মোহাম্মদ নাজিম উদ্দিন" },
-  { "title": "নেক্সাস", "author": "মোহাম্মদ নাজিম উদ্দিন" },
-  { "title": "কনফেশন", "author": "মোহাম্মদ নাজিম উদ্দিন" },
-  { "title": "করাচি", "author": "মোহাম্মদ নাজিম উদ্দিন" }
+  { "serial": 1, "title": "আরণ্যক", "author": "বিভূতিভূষণ বন্দ্যোপাধ্যায়" },
+  { "serial": 2, "title": "আদর্শ হিন্দু হোটেল", "author": "বিভূতিভূষণ বন্দ্যোপাধ্যায়" },
+  { "serial": 3, "title": "ইছামতী", "author": "বিভূতিভূষণ বন্দ্যোপাধ্যায়" },
+  { "serial": 4, "title": "পথের পাঁচালী", "author": "বিভূতিভূষণ বন্দ্যোপাধ্যায়" },
+  { "serial": 5, "title": "Harry Potter and the goblet of fire", "author": "J.K. Rowling" },
+  { "serial": 6, "title": "ফেলুদা সমগ্র ১", "author": "সত্যজিৎ রায়" },
+  { "serial": 7, "title": "ব্যোমকেশ সমগ্র", "author": "শরদিন্দু বন্দ্যোপাধ্যায়" },
+  { "serial": 8, "title": "গল্পগুচ্ছ", "author": "রবীন্দ্রনাথ ঠাকুর" },
+  { "serial": 9, "title": "চোখের বালি", "author": "রবীন্দ্রনাথ ঠাকুর" },
+  { "serial": 10, "title": "কাকাবাবু সমগ্র ১", "author": "সুনীল গঙ্গোপাধ্যায়" },
+  { "serial": 11, "title": "কাকাবাবু সমগ্র ২", "author": "সুনীল গঙ্গোপাধ্যায়" },
+  { "serial": 12, "title": "কাকাবাবু সমগ্র ৩", "author": "সুনীল গঙ্গোপাধ্যায়" },
+  { "serial": 13, "title": "কাকাবাবু সমগ্র ৪", "author": "সুনীল গঙ্গোপাধ্যায়" },
+  { "serial": 14, "title": "কাকাবাবু সমগ্র ৫", "author": "সুনীল গঙ্গোপাধ্যায়" },
+  { "serial": 15, "title": "নেমেসিস", "author": "মোহাম্মদ নাজিম উদ্দিন" },
+  { "serial": 16, "title": "কন্ট্রাক্ট", "author": "মোহাম্মদ নাজিম উদ্দিন" },
+  { "serial": 17, "title": "নেক্সাস", "author": "মোহাম্মদ নাজিম উদ্দিন" },
+  { "serial": 18, "title": "কনফেশন", "author": "মোহাম্মদ নাজিম উদ্দিন" },
+  { "serial": 19, "title": "করাচি", "author": "মোহাম্মদ নাজিম উদ্দিন" }
 ]
