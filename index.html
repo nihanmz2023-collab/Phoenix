@@ -1,21 +1,108 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Library of Nihan & Fimu</title>
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    h1 { text-align: center; }
-    input { margin-bottom: 20px; width: 100%; padding: 10px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    th { background-color: #f4f4f4; }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      margin: 20px;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff8e7;
+      text-shadow: 2px 2px 6px #21160f;
+      margin-bottom: 30px;
+    }
+
+    input {
+      display: block;
+      margin: 0 auto 20px;
+      width: 100%;
+      max-width: 600px;
+      padding: 12px;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-family: Georgia, serif;
+      border: 1px solid #b9a384;
+      border-radius: 6px;
+      background: rgba(255, 252, 245, 0.97);
+      color: #2c2118;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255, 252, 245, 0.95);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    th, td {
+      border: 1px solid #c9b99f;
+      padding: 10px;
+      text-align: left;
+      color: #2c2118;
+    }
+
+    th {
+      background-color: #e8d7bd;
+      font-size: 16px;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: rgba(238, 228, 211, 0.85);
+    }
+
+    tbody tr:hover {
+      background-color: #e6d1b2;
+    }
+
+    #status {
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 3px #21160f;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        margin: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      th, td {
+        padding: 7px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <h1>📚 𝑇ℎ𝑒 𝐿𝑖𝑏𝑟𝑎𝑟𝑦 𝑜𝑓 𝑁𝑖ℎ𝑎𝑛 & 𝐹𝑖𝑚𝑢</h1>
 
-  <input type="text" id="searchInput" placeholder="Search by book or author..." onkeyup="searchBook()">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search by book or author..."
+    oninput="searchBook()"
+    aria-label="Search by book name or author"
+  >
+
+  <p id="status" role="status">Loading books...</p>
 
   <table id="bookTable">
     <thead>
@@ -32,29 +119,69 @@
 
   <script>
     // Load books from books.json
-    fetch('books.json')
-      .then(response => response.json())
+    fetch('./books.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Could not load books.json');
+        }
+        return response.json();
+      })
       .then(data => {
-        let tbody = document.querySelector("#bookTable tbody");
+        const tbody = document.querySelector("#bookTable tbody");
+        const status = document.getElementById("status");
+
         data.forEach(book => {
-          let row = `<tr>
-            <td>${book.serial}</td>
-            <td>${book.title}</td>
-            <td>${book.author}</td>
-          </tr>`;
-          tbody.innerHTML += row;
+          const row = document.createElement("tr");
+
+          [book.serial, book.title, book.author].forEach(value => {
+            const cell = document.createElement("td");
+            cell.textContent = value ?? "";
+            row.appendChild(cell);
+          });
+
+          tbody.appendChild(row);
         });
+
+        status.textContent = data.length + " books in the library.";
+
+        // Apply search if text was entered while books were loading
+        searchBook();
+      })
+      .catch(error => {
+        console.error("Error loading books:", error);
+        document.getElementById("status").textContent =
+          "Unable to load books. Please check books.json.";
       });
 
     // Search by book name OR author
     function searchBook() {
-      let input = document.getElementById("searchInput").value.toLowerCase();
-      let rows = document.querySelectorAll("#bookTable tbody tr");
+      const input = document
+        .getElementById("searchInput")
+        .value.toLowerCase()
+        .trim();
+
+      const rows = document.querySelectorAll("#bookTable tbody tr");
+      let visibleCount = 0;
+
       rows.forEach(row => {
-        let title = row.cells[1].textContent.toLowerCase();   // Book Name
-        let author = row.cells[2].textContent.toLowerCase();  // Author
-        row.style.display = (title.includes(input) || author.includes(input)) ? "" : "none";
+        const title = row.cells[1].textContent.toLowerCase();
+        const author = row.cells[2].textContent.toLowerCase();
+
+        const matches =
+          title.includes(input) || author.includes(input);
+
+        row.style.display = matches ? "" : "none";
+
+        if (matches) visibleCount++;
       });
+
+      const status = document.getElementById("status");
+
+      if (rows.length > 0) {
+        status.textContent = input
+          ? visibleCount + " matching book(s) found."
+          : rows.length + " books in the library.";
+      }
     }
   </script>
 </body>
